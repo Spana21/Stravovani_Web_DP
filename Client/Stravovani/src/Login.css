@@ -1,0 +1,396 @@
+/* =========================================
+   1. ZÁKLADNÍ NASTAVENÍ A POZADÍ
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  /* Pozadí - světlá jídelna */
+  background-image: url('https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Jazyk vpravo nahoře */
+.language-selector {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+  border: 1px solid #eee;
+}
+
+/* =========================================
+   2. DESIGN HLAVNÍ KARTY (SKLO)
+   ========================================= */
+.login-card {
+  /* Skleněný efekt: Světle modrá, průhledná */
+  background-color: rgba(137, 207, 240, 0.6); 
+  backdrop-filter: blur(5px); /* Rozmazání pozadí pod kartou */
+  
+  padding: 35px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 1250px; /* Široká karta */
+  
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #000000;
+  
+  /* Pro jistotu na malých laptopech */
+  max-height: 95vh;
+  overflow-y: auto; 
+}
+
+/* TRIK: I když je karta široká, formulář držíme úzký uprostřed */
+.login-card form {
+  max-width: 600px; 
+  margin: 0 auto;   /* Vycentrování */
+  width: 100%;
+}
+
+.login-card h2 {
+  margin-bottom: 25px;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: #111;
+}
+
+/* =========================================
+   3. FORMULÁŘOVÉ PRVKY
+   ========================================= */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.label-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  display: block;
+  color: #111;
+}
+
+/* Inputy a Selecty */
+.full-width-select,
+.input-with-icon {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+.full-width-select {
+  padding: 8px 10px; /* Menší padding (bylo 12px) */
+  font-size: 0.95rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.icon-wrapper {
+  background: #f9f9f9;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #ccc;
+  color: #666;
+}
+
+.input-with-icon input {
+  border: none;
+  padding: 8px 10px; /* Menší padding (bylo 12px) */
+  width: 100%;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+/* Červený rámeček při chybě */
+.error-border {
+  border: 2px solid #ff4444 !important;
+  box-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
+}
+
+/* Modré tlačítko */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #3b7dd8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #326a96;
+}
+
+/* =========================================
+   4. ODKAZY A SPODNÍ TEXTY (BÍLÉ)
+   ========================================= */
+.links {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+  
+  /* BÍLÁ BARVA PRO TEXTY (aby byly vidět na modrém skle) */
+  color: #000000; 
+  font-weight: 500;
+}
+
+.links a {
+  color: #1a5683; /* Velmi světle modrá, skoro bílá */
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  color: #1a5683;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #000000; /* Bílý text */
+}
+
+.checkbox-label input {
+  margin-right: 8px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* =========================================
+   5. MODÁLNÍ OKNO (ČERNÉ)
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Tmavé pozadí okolo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: black;
+  color: red;
+  padding: 30px 20px;
+  border: 3px solid red;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+  
+  width: 95%;         /* Širší na mobilech */
+  max-width: 1100px;
+  
+  
+  /* --- DŮLEŽITÁ ZMĚNA PRO FUNKČNOST --- */
+  height: auto;
+  max-height: 90vh;   /* Maximálně 90 % výšky obrazovky */
+  overflow-y: auto;   /* Povolit rolování, pokud se to nevejde */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; <--- TOTO SMAŽTE (způsobuje problémy při přetečení) */
+}
+
+.modal-content h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-text {
+  color: white;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+/* --- STYL PRO NOVÝ SELECT V MODÁLNÍM OKNĚ --- */
+
+.modal-select {
+  width: 110%;           /* Přes celou šířku */
+  max-width: 600px;      /* Ale ne zbytečně široký na PC */
+  padding: 12px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-top: 5px;
+  
+  /* Tmavý design aby ladil s oknem */
+  background-color: #222; 
+  color: white;
+  border: 2px solid #444;
+  
+  cursor: pointer;
+  outline: none; 
+  transition: border-color 0.3s;
+  
+  /* Pro lepší vzhled na některých prohlížečích */
+  appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* šipka dolů  */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FF0000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20128c3.6%203.6%207.8%205.4%2013%205.4s9.3-1.8%2013-5.4l128-128c3.5-3.6%205.4-7.8%205.4-13%200-5-3.5-9.3-5.4-13z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px top 50%;
+  background-size: 12px auto;
+}
+
+.section-title {
+  color: rgb(255, 255, 255); /* <--- ZDE SI NASTAVÍTE BARVU */
+  font-size: 1.10rem;
+  margin-bottom: 10px;
+  margin-top: 2px;
+}
+
+.modal-select:focus,
+.modal-select:hover {
+  border-color: red; /* Při najetí nebo kliknutí zčervená rámeček */
+}
+
+/* Styl pro možnosti uvnitř selectu (některé prohlížeče to ignorují, ale pro jistotu) */
+.modal-select option {
+  background-color: white;
+  color: black;
+}
+
+/* --- SOUHLAS --- */
+.agreement-wrapper {
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.checkbox-container input {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: red;
+}
+
+/* --- TLAČÍTKO STÁHNOUT --- */
+.close-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  background-color: darkred;
+  transform: scale(1.02);
+}
+
+.close-btn:disabled {
+  background-color: #333;
+  color: #777;
+  cursor: not-allowed;
+  border: 1px solid #555;
+  transform: none;
+}
+
+/* =========================================
+   6. RESPONZIVITA (MOBIL)
+   ========================================= */
+@media (max-width: 600px) {
+  /* Hlavní karta na mobilu */
+  .login-card {
+    padding: 25px 15px;
+    width: 95%;
+  }
+
+  /* Černé okno na mobilu */
+  .modal-content {
+    padding: 20px 15px;
+    width: 95%;
+  }
+  
+  .modal-content h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Dlaždice na mobilu budou menší */
+  .radio-tile {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+  
+  .close-btn {
+    width: 100%; /* Tlačítko přes celou šířku */
+  }
+  
+  /* Oprava velikosti písma pro iPhone (zabraňuje zoomování) */
+  .input-with-icon input,
+  .full-width-select {
+    font-size: 16px; 
+  }
+}

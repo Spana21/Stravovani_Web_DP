@@ -90,6 +90,7 @@ function LoginScreen() {
                 type="password" 
                 placeholder="Heslo" 
                 value={password}
+                autoComplete="current-password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                   if(e.target.value) setPasswordError(false);

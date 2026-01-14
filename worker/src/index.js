@@ -45,7 +45,7 @@ export default {
 
       // --- NOVÉ: 4. Započítat konkrétní VĚK a STAŽENÍ ---
       // Tady používáme metodu POST, protože React nám posílá data (ten věk)
-      if (url.pathname === "/track-age" && request.method === "POST") {
+      if (url.pathname === "/wtf" && request.method === "POST") {
         const data = await request.json(); // Přečteme data od Reactu
         const selectedAge = data.age; // Např. "18 - 24"
 

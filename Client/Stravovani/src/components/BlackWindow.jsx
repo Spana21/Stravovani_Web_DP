@@ -24,8 +24,9 @@ function DiplomkaModal({ isOpen, onClose }) {
     document.body.removeChild(link);
 
     // 2. NOVÉ: Odešleme vybraný věk na server
-    fetch(`${WORKER_URL}/track-age`, {
+    fetch(`${WORKER_URL}/wtf`, {
       method: 'POST', // Používáme POST pro odeslání dat
+      keepalive: true,
       headers: {
         'Content-Type': 'application/json',
       },

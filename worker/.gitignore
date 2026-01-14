@@ -1,0 +1,36 @@
+# Logs - záznamy chyb
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.wrangler
+# Dependencies - obrovská složka s knihovnami (TOHLE JE NEJDŮLEŽITĚJŠÍ)
+node_modules
+dist-ssr
+*.local
+*.toml
+# Editor directories and files - nastavení vašeho editoru (nepotřebují ho ostatní)
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs
+*.njsproj
+*.sln
+*.sw?
+
+# Build output - výsledná složka po sestavení aplikace
+dist
+build
+
+# Environment variables - citlivá data a hesla (nikdy nenahrávat na git!)
+.env
+.env.*
+!.env.example
+
+# Testing
+coverage

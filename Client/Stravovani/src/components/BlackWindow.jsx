@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
+// Tady si definujeme adresu Workeru (stejná jako v LoginScreen)
+const WORKER_URL = "https://stravovani-worker.spaniklukas.workers.dev";
+
 function DiplomkaModal({ isOpen, onClose }) {
-  // Stavy pro věk a souhlas přesuneme SEM, protože rodiče to nezajímá
   const [isAgreed, setIsAgreed] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
 
-  // Pokud okno není otevřené, nic nevykreslíme
   if (!isOpen) return null;
 
   const ageGroups = [
@@ -14,14 +15,26 @@ function DiplomkaModal({ isOpen, onClose }) {
   ];
 
   const handleDownload = () => {
+    // 1. Spustíme stažení souboru (simulace)
     const link = document.createElement('a');
     link.href = '/informovany_souhlas.pdf'; 
     link.download = 'Informovany_souhlas_ucastnika.pdf'; 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+    // 2. NOVÉ: Odešleme vybraný věk na server
+    fetch(`${WORKER_URL}/track-age`, {
+      method: 'POST', // Používáme POST pro odeslání dat
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ age: selectedAge }) // Pošleme vybraný věk
+    })
+    .then(res => console.log("Věk odeslán do statistiky"))
+    .catch(err => console.error("Chyba při odesílání věku:", err));
     
-    // Po stažení zavřeme okno (funkce poslaná od rodiče)
+    // 3. Zavřeme okno
     onClose();
   };
 

@@ -12,7 +12,7 @@
   width: 100%;
   height: 100vh;
   /* Pozadí - světlá jídelna */
-  background-image: url('https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-image: url('/background.jpg');
   background-size: cover;
   background-position: center;
   display: flex;

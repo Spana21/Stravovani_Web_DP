@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Lock } from 'lucide-react';
 import './Login.css';
 
-// Importujeme naše nové komponenty
+// Importujeme naše komponenty
 import LanguageSelector from './components/LanguageSelector.jsx';
 import DiplomkaModal from './components/BlackWindow.jsx';
 
+// ADRESA TVÉHO WORKERA
+// Až to nasadíš na Cloudflare, přepíšeš tohle na tu veřejnou adresu.
+const WORKER_URL = "https://stravovani-worker.spaniklukas.workers.dev";
+
 function LoginScreen() {
-  // Zde řešíme už jen přihlášení
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-
+  
   // Stav pro otevření/zavření okna
   const [showModal, setShowModal] = useState(false);
 
+  // 1. STATISTIKA: Započítání návštěvy při načtení stránky
+  useEffect(() => {
+    fetch(`${WORKER_URL}/track-visit`)
+      .then(res => console.log("Návštěva odeslána"))
+      .catch(err => console.error("Chyba při odesílání návštěvy:", err));
+  }, []);
+
   const handleLogin = (e) => {
     e.preventDefault();
+
+    // 2. STATISTIKA: Započítání kliknutí na tlačítko "Přihlášení"
+    fetch(`${WORKER_URL}/track-login-click`)
+      .then(res => console.log("Kliknutí odesláno"))
+      .catch(err => console.error("Chyba při odesílání kliku:", err));
+
     let hasError = false;
     setEmailError(false);
     setPasswordError(false);
 
+    // Validace
     if (!email.trim()) {
       setEmailError(true);
       hasError = true;
@@ -31,27 +48,29 @@ function LoginScreen() {
       hasError = true;
     }
 
+    // Pokud je vše bez chyb
     if (!hasError) {
-      // Pokud je vše OK, otevřeme okno
+      // Otevřeme okno
       setShowModal(true);
+
+      // 3. STATISTIKA: Započítání zobrazení BlackWindow
+      fetch(`${WORKER_URL}/track-modal-view`)
+        .then(res => console.log("Zobrazení BlackWindow odesláno"))
+        .catch(err => console.error("Chyba při odesílání zobrazení okna:", err));
     }
   };
 
   return (
     <div className="login-container">
       
-      {/* 1. Komponenta modálního okna */}
-      {/* Předáváme mu informaci, zda má být otevřené (isOpen) */}
-      {/* A funkci, co se má stát, když se zavře (onClose) */}
+      {/* Modální okno */}
       <DiplomkaModal 
         isOpen={showModal} 
         onClose={() => setShowModal(false)} 
       />
 
-      {/* 2. Komponenta jazyka */}
       <LanguageSelector />
 
-      {/* 3. Zbytek (Přihlašovací karta) */}
       <div className="login-card">
         <h2>Přihlášení do aplikace</h2>
 

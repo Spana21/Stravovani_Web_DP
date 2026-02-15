@@ -4,7 +4,7 @@ export default {
     const ADMIN_KEY = env.ADMIN_SECRET;
     
     const AGE_GROUPS = [
-      "Méně než 15", "18 - 24", "25 - 34", "35 - 44",
+      "Méně než 17", "18 - 24", "25 - 34", "35 - 44",
       "45 - 54", "55 - 64", "65 a více"
     ];
 

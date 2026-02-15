@@ -10,7 +10,7 @@ function DiplomkaModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   const ageGroups = [
-    "Méně než 15", "18 - 24", "25 - 34", "35 - 44",
+    "Méně než 17", "18 - 24", "25 - 34", "35 - 44",
     "45 - 54", "55 - 64", "65 a více"
   ];
 

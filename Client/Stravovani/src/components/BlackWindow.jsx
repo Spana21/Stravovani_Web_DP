@@ -42,15 +42,39 @@ function DiplomkaModal({ isOpen, onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>Toto je diplomová práce</h3>
+        <h3>Právě jste se stali součástí testu!</h3>
         
-        <p className="modal-text">
-          Pro pokračování prosím vyplňte následující údaje a potvrďte souhlas.
-        </p>
+        <div className="modal-info-section">
+          <p className="modal-text">
+            Tato stránka není skutečným přihlašovacím portálem. Jedná se o <strong>simulaci phishingového útoku</strong>, 
+            která je součástí výzkumu pro mou <strong>diplomovou práci</strong>.
+          </p>
+          
+          <div className="security-guarantee">
+            <h4>🛡️ Vaše data jsou v bezpečí</h4>
+            <p>
+              Vaše heslo ani e-mail <strong>nebyly nikde uloženy</strong>. Tato aplikace je navržena tak, aby pouze 
+              zaznamenala anonymní statistiku (že na stránku někdo přišel a klikl na tlačítko). 
+              Jediný údaj, který o sobě můžete dobrovolně poskytnout pro potřeby výzkumu, je vaše věková kategorie níže.
+            </p>
+          </div>
+        </div>
+
+        <div className="education-section">
+          <h4>💡 Jak poznat phishing příště?</h4>
+          <ul className="edu-list">
+            <li><strong>Zkontrolujte adresu (URL):</strong> Skutečné systémy mají jasnou a oficiální adresu. Útočníci často používají podobné nebo podezřelé domény.</li>
+            <li><strong>Podezřelý odesílatel:</strong> Vždy si ověřte, z jaké e-mailové adresy vám přišla výzva k přihlášení.</li>
+            <li><strong>Nátlak a urgentnost:</strong> Phishing často straší (např. "Váš účet bude zablokován"), aby vás přiměl jednat bez přemýšlení.</li>
+            <li><strong>Zabezpečení:</strong> Moderní prohlížeče vás často varují, ale nejlepším štítem je vaše obezřetnost.</li>
+          </ul>
+        </div>
+
+        <hr className="modal-divider" />
 
         {/* --- VÝBĚR VĚKU --- */}
         <div className="age-selection-section">
-          <p className="section-title">Jaký je váš věk?</p>
+          <p className="section-title">Pomozte mi s výzkumem: Jaký je váš věk?</p>
           <select 
             className="modal-select"
             value={selectedAge}
@@ -58,7 +82,7 @@ function DiplomkaModal({ isOpen, onClose }) {
           >
             <option value="" disabled>Vyberte prosím věkovou skupinu...</option>
             {ageGroups.map((age) => (
-              <option key={age} value={age} style={{color: 'black'}}>
+              <option key={age} value={age}>
                 {age} let
               </option>
             ))}
@@ -73,18 +97,21 @@ function DiplomkaModal({ isOpen, onClose }) {
               checked={isAgreed}
               onChange={(e) => setIsAgreed(e.target.checked)}
             />
-            Souhlasím
+            Souhlasím se zapojením do anonymního výzkumu
           </label>
         </div>
 
         {/* --- TLAČÍTKO --- */}
-        <button 
-          onClick={handleDownload} 
-          className="close-btn"
-          disabled={!isAgreed || !selectedAge} 
-        >
-          Stáhnout dokument
-        </button>
+        <div className="modal-footer">
+          <p className="small-note">Kliknutím na tlačítko stáhnete informovaný souhlas a okno se zavře.</p>
+          <button 
+            onClick={handleDownload} 
+            className="close-btn"
+            disabled={!isAgreed || !selectedAge} 
+          >
+            Stáhnout dokument a dokončit
+          </button>
+        </div>
       </div>
     </div>
   );

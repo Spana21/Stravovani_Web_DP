@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { User, Lock } from 'lucide-react';
 import './Login.css';
 
-// Importujeme naše komponenty
+
 import LanguageSelector from './components/LanguageSelector.jsx';
 import DiplomkaModal from './components/BlackWindow.jsx';
 
-// ADRESA TVÉHO WORKERA
-// Až to nasadíš na Cloudflare, přepíšeš tohle na tu veřejnou adresu.
+// ADRESA WORKERA
 const WORKER_URL = "https://stravovani-worker.spaniklukas.workers.dev";
 
 function LoginScreen() {
@@ -48,9 +47,9 @@ function LoginScreen() {
       hasError = true;
     }
 
-    // Pokud je vše bez chyb
+  
     if (!hasError) {
-      // Otevřeme okno
+ 
       setShowModal(true);
 
       // 3. STATISTIKA: Započítání zobrazení BlackWindow

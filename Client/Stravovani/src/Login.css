@@ -11,7 +11,6 @@
 .login-container {
   width: 100%;
   height: 100vh;
-  /* Pozadí - světlá jídelna */
   background-image: url('/background.jpg');
   background-size: cover;
   background-position: center;
@@ -44,7 +43,6 @@
    2. DESIGN HLAVNÍ KARTY (SKLO)
    ========================================= */
 .login-card {
-  /* Skleněný efekt: Světle modrá, průhledná */
   background-color: rgba(137, 207, 240, 0.6); 
   backdrop-filter: blur(5px); /* Rozmazání pozadí pod kartou */
   
@@ -57,12 +55,12 @@
   text-align: center;
   color: #000000;
   
-  /* Pro jistotu na malých laptopech */
+
   max-height: 95vh;
   overflow-y: auto; 
 }
 
-/* TRIK: I když je karta široká, formulář držíme úzký uprostřed */
+
 .login-card form {
   max-width: 600px; 
   margin: 0 auto;   /* Vycentrování */
@@ -95,14 +93,14 @@
 /* Inputy a Selecty */
 .full-width-select,
 .input-with-icon {
-  width: 100%;
+  width: 100%; 
   border-radius: 4px;
   border: 1px solid #ccc;
   background: white;
 }
 
 .full-width-select {
-  padding: 8px 10px; /* Menší padding (bylo 12px) */
+  padding: 8px 10px; 
   font-size: 0.95rem;
   color: #333;
   cursor: pointer;
@@ -126,7 +124,7 @@
 
 .input-with-icon input {
   border: none;
-  padding: 8px 10px; /* Menší padding (bylo 12px) */
+  padding: 8px 10px; 
   width: 100%;
   outline: none;
   font-size: 0.95rem;
@@ -158,7 +156,7 @@
 }
 
 /* =========================================
-   4. ODKAZY A SPODNÍ TEXTY (BÍLÉ)
+   4. ODKAZY A SPODNÍ TEXTY
    ========================================= */
 .links {
   margin-top: 25px;
@@ -168,13 +166,13 @@
   gap: 15px;
   align-items: flex-start;
   
-  /* BÍLÁ BARVA PRO TEXTY (aby byly vidět na modrém skle) */
+ 
   color: #000000; 
   font-weight: 500;
 }
 
 .links a {
-  color: #1a5683; /* Velmi světle modrá, skoro bílá */
+  color: #1a5683; 
   text-decoration: none;
   font-weight: 700;
 }
@@ -197,7 +195,7 @@
   align-items: center;
   cursor: pointer;
   font-weight: 500;
-  color: #000000; /* Bílý text */
+  color: #000000; 
 }
 
 .checkbox-label input {
@@ -208,7 +206,7 @@
 }
 
 /* =========================================
-   5. MODÁLNÍ OKNO (ČERNÉ)
+   5. MODÁLNÍ OKNO (EDUČAČNÍ A VAROVNÉ)
    ========================================= */
 .modal-overlay {
   position: fixed;
@@ -216,181 +214,239 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Tmavé pozadí okolo */
+  background-color: rgba(0, 0, 0, 0.9); /* Tmavy podklad pro kontrast */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
 }
 
 .modal-content {
-  background-color: black;
-  color: red;
-  padding: 30px 20px;
-  border: 3px solid red;
-  border-radius: 15px;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  padding: 40px;
+  border: 2px solid #ff4444; /* Výrazná červená pro varovný efekt */
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 50px rgba(255, 68, 68, 0.3);
   
-  width: 95%;         /* Širší na mobilech */
-  max-width: 1100px;
+  width: 95%;
+  max-width: 850px; /* Užší pro lepší čitelnost řádků */
   
-  
-  /* --- DŮLEŽITÁ ZMĚNA PRO FUNKČNOST --- */
   height: auto;
-  max-height: 90vh;   /* Maximálně 90 % výšky obrazovky */
-  overflow-y: auto;   /* Povolit rolování, pokud se to nevejde */
+  max-height: 90vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* justify-content: center; <--- TOTO SMAŽTE (způsobuje problémy při přetečení) */
 }
 
 .modal-content h3 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  color: #ff4444;
+  margin-bottom: 20px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+
+.modal-info-section {
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
 
 .modal-text {
-  color: white;
-  margin-bottom: 25px;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  color: #eee;
+  margin-bottom: 20px;
 }
 
-/* --- STYL PRO NOVÝ SELECT V MODÁLNÍM OKNĚ --- */
+/* Sekce se zárukou bezpečnosti */
+.security-guarantee {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 5px solid #00c851; /* Zelená pro pocit bezpečí */
+  text-align: left;
+  margin: 20px 0;
+}
+
+.security-guarantee h4 {
+  color: #00c851;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.security-guarantee p {
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+/* Edukační sekce */
+.education-section {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.education-section h4 {
+  color: #ffbb33; /* Oranžová pro tipy */
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.edu-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.edu-list li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.edu-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #ffbb33;
+  font-weight: bold;
+}
+
+.modal-divider {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 20px 0;
+  width: 100%;
+}
+
+/* Výběr věku v modálu */
+.age-selection-section {
+  margin-bottom: 25px;
+}
+
+.section-title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
 
 .modal-select {
-  width: 110%;           /* Přes celou šířku */
-  max-width: 600px;      /* Ale ne zbytečně široký na PC */
+  width: 100%;
+  max-width: 400px;
   padding: 12px 15px;
-  font-size: 1rem;
-  border-radius: 8px;
-  margin-top: 5px;
-  
-  /* Tmavý design aby ladil s oknem */
-  background-color: #222; 
-  color: white;
+  background-color: #000000; /* Sytě černé pozadí */
+  color: #ffffff; /* Bílé písmo */
   border: 2px solid #444;
-  
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
   cursor: pointer;
-  outline: none; 
-  transition: border-color 0.3s;
-  
-  /* Pro lepší vzhled na některých prohlížečích */
-  appearance: none; 
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  /* šipka dolů  */
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FF0000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20128c3.6%203.6%207.8%205.4%2013%205.4s9.3-1.8%2013-5.4l128-128c3.5-3.6%205.4-7.8%205.4-13%200-5-3.5-9.3-5.4-13z%22%2F%3E%3C%2Fsvg%3E");
+  outline: none;
+  transition: all 0.3s;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20128c3.6%203.6%207.8%205.4%2013%205.4s9.3-1.8%2013-5.4l128-128c3.5-3.6%205.4-7.8%205.4-13%200-5-3.5-9.3-5.4-13z%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
   background-position: right 15px top 50%;
   background-size: 12px auto;
 }
 
-.section-title {
-  color: rgb(255, 255, 255); /* <--- ZDE SI NASTAVÍTE BARVU */
-  font-size: 1.10rem;
-  margin-bottom: 10px;
-  margin-top: 2px;
-}
-
-.modal-select:focus,
-.modal-select:hover {
-  border-color: red; /* Při najetí nebo kliknutí zčervená rámeček */
-}
-
-/* Styl pro možnosti uvnitř selectu (některé prohlížeče to ignorují, ale pro jistotu) */
 .modal-select option {
-  background-color: white;
-  color: black;
+  background-color: #000000;
+  color: #ffffff;
 }
 
-/* --- SOUHLAS --- */
+.modal-select:focus {
+  border-color: #ff4444;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.2);
+}
+
+/* Souhlas */
 .agreement-wrapper {
-  margin-bottom: 25px;
-  margin-top: 10px;
+  margin: 20px 0 30px 0;
 }
 
 .checkbox-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 1.2rem;
-  color: red;
+  gap: 12px;
+  font-size: 1.1rem;
+  color: #ff4444;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .checkbox-container input {
   width: 22px;
   height: 22px;
-  cursor: pointer;
-  accent-color: red;
+  accent-color: #ff4444;
 }
 
-/* --- TLAČÍTKO STÁHNOUT --- */
+/* Footer a tlačítko */
+.modal-footer {
+  margin-top: auto;
+}
+
+.small-note {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 15px;
+}
+
 .close-btn {
-  background-color: red;
+  background-color: #ff4444;
   color: white;
   border: none;
-  padding: 15px 40px;
-  border-radius: 8px;
+  padding: 16px 50px;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 1.1rem;
-  transition: all 0.3s;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
 }
 
-.close-btn:hover {
-  background-color: darkred;
-  transform: scale(1.02);
+.close-btn:hover:not(:disabled) {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
 }
 
 .close-btn:disabled {
-  background-color: #333;
-  color: #777;
+  background-color: #222;
+  color: #555;
   cursor: not-allowed;
-  border: 1px solid #555;
-  transform: none;
+  box-shadow: none;
 }
 
 /* =========================================
    6. RESPONZIVITA (MOBIL)
    ========================================= */
 @media (max-width: 600px) {
-  /* Hlavní karta na mobilu */
   .login-card {
     padding: 25px 15px;
     width: 95%;
   }
 
-  /* Černé okno na mobilu */
   .modal-content {
-    padding: 20px 15px;
-    width: 95%;
+    padding: 30px 20px;
   }
   
   .modal-content h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
-  /* Dlaždice na mobilu budou menší */
-  .radio-tile {
-    font-size: 0.85rem;
-    padding: 8px 12px;
+  .security-guarantee, .education-section {
+    padding: 15px;
   }
   
   .close-btn {
-    width: 100%; /* Tlačítko přes celou šířku */
-  }
-  
-  /* Oprava velikosti písma pro iPhone (zabraňuje zoomování) */
-  .input-with-icon input,
-  .full-width-select {
-    font-size: 16px; 
+    width: 100%;
+    padding: 15px;
   }
 }

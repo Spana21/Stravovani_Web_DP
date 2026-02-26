@@ -9,7 +9,7 @@ export default {
     ];
 
     const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "https://jidelny-vlzr.eu",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     };
@@ -56,8 +56,6 @@ export default {
         const data = await request.json();
         const selectedAge = data.age;
 
-        // BEZPEČNOSTNÍ KONTROLA: Je ten věk v našem seznamu?
-        // Aby nám tam někdo neposlal skript nebo nesmysl.
         if (selectedAge && AGE_GROUPS.includes(selectedAge)) {
           
           // A) Celkové stažení
@@ -77,10 +75,9 @@ export default {
       }
 
       // -------------------------------------------------------------
-      // 2. ADMIN ZÓNA (Chráněno heslem) 🛡️
+      // 2. ADMIN ZÓNA
       // -------------------------------------------------------------
 
-      // Pokud chce někdo vidět STATS_NETFLIX nebo mazat, MUSÍ mít klíč
       if (url.pathname === "/stats" || url.pathname === "/delete") {
         
         // KONTROLA HESLA
@@ -91,9 +88,9 @@ export default {
             });
         }
 
-        // A) Výpis statistik (jen když sedí heslo)
+        // A) Výpis statistik
         if (url.pathname === "/stats") {
-            const visits = await env.STATS.get("visits") || 0; // opraven nazev klice z predchoziho kodu
+            const visits = await env.STATS.get("visits") || 0;
             const clicks = await env.STATS.get("login_clicks") || 0;
             const modalViews = await env.STATS.get("modal_views") || 0;
             const downloads = await env.STATS.get("downloads") || 0;
@@ -109,9 +106,8 @@ export default {
             }, null, 2), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
         }
 
-        // B) Smazání dat (jen když sedí heslo)
+        // B) Smazání dat
         if (url.pathname === "/delete") {
-            // Smažeme vše
             await env.STATS.delete("visits");
             await env.STATS.delete("login_clicks");
             await env.STATS.delete("modal_views");

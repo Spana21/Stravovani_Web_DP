@@ -10,7 +10,6 @@ html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Zabrání vodorovnému posuvníku */
+  overflow-x: hidden; 
 }
 
-/* Pokud máte soubor App.css, ujistěte se, že tam není nastavený "max-width" nebo "margin: 0 auto" na #root elementu */

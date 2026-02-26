@@ -42,7 +42,7 @@ function DiplomkaModal({ isOpen, onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>Právě jste se stali součástí testu!</h3>
+        <h3>Právě jste se stali součástí testování!</h3>
         
         <div className="modal-info-section">
           <p className="modal-text">

@@ -49,6 +49,11 @@ function DiplomkaModal({ isOpen, onClose }) {
             Tato stránka není skutečným přihlašovacím portálem. Jedná se o <strong>simulaci phishingového útoku</strong>, 
             která je součástí výzkumu pro mou <strong>diplomovou práci</strong>.
           </p>
+
+          <p className="github-info">
+            Celý projekt je transparentní a jeho zdrojový kód si můžete prohlédnout na 
+            <a href="https://github.com/Spana21/Stravovani_Web_DP" target="_blank" rel="noopener noreferrer" className="github-link"> GitHubu</a>.
+          </p>
           
           <div className="security-guarantee">
             <h4>🛡️ Vaše data jsou v bezpečí</h4>

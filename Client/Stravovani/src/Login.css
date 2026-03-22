@@ -206,7 +206,7 @@
 }
 
 /* =========================================
-   5. MODÁLNÍ OKNO (EDUČAČNÍ A VAROVNÉ)
+   5. MODÁLNÍ OKNO (SAFE DARK MODE)
    ========================================= */
 .modal-overlay {
   position: fixed;
@@ -214,141 +214,165 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9); /* Tmavy podklad pro kontrast */
+  background-color: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .modal-content {
   background-color: #0a0a0a;
   color: #ffffff;
-  padding: 40px;
-  border: 2px solid #ff4444; /* Výrazná červená pro varovný efekt */
-  border-radius: 20px;
+  padding: 50px;
+  border: 1px solid #10b981; /* Elegantní zelený okraj */
+  border-radius: 24px;
   text-align: center;
-  box-shadow: 0 0 50px rgba(255, 68, 68, 0.3);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.15); /* Jemná zelená záře */
   
   width: 95%;
-  max-width: 850px; /* Užší pro lepší čitelnost řádků */
+  max-width: 1150px; /* Rozšířeno pro vzdušnější pocit */
   
   height: auto;
   max-height: 90vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .modal-content h3 {
   font-size: 2.2rem;
-  color: #ff4444;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: #10b981; /* Bezpečná zelená */
+  margin-bottom: 25px;
   font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .modal-info-section {
-  margin-bottom: 30px;
-  line-height: 1.6;
+  margin-bottom: 20px;
+  line-height: 1.7;
 }
 
 .modal-text {
-  font-size: 1.1rem;
-  color: #eee;
-  margin-bottom: 15px;
+  font-size: 1.15rem;
+  color: #e2e8f0;
+  margin-bottom: 20px;
 }
 
 .github-info {
   font-size: 0.95rem;
-  color: #bbb;
-  margin-bottom: 20px;
+  color: #94a3b8;
+  margin-bottom: 25px;
 }
 
 .github-link {
-  color: #44aaff; /* Světle modrá pro odkazy na tmavém pozadí */
+  color: #10b981;
   text-decoration: none;
   font-weight: 600;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.3);
   transition: all 0.2s;
 }
 
 .github-link:hover {
-  color: #88ccff;
-  border-bottom: 1px solid #88ccff;
+  color: #34d399;
+  border-bottom-color: #34d399;
 }
 
-/* Sekce se zárukou bezpečnosti */
+/* Sekce se zárukou bezpečnosti - DOMINANTNÍ */
 .security-guarantee {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 20px;
-  border-radius: 12px;
-  border-left: 5px solid #00c851; /* Zelená pro pocit bezpečí */
+  background: rgba(16, 185, 129, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
   text-align: left;
-  margin: 20px 0;
+  margin: 25px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.security-guarantee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #10b981;
 }
 
 .security-guarantee h4 {
-  color: #00c851;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  color: #10b981;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
 }
 
 .security-guarantee p {
-  font-size: 0.95rem;
-  color: #ddd;
+  font-size: 1.05rem;
+  color: #d1fae5;
+  line-height: 1.6;
 }
 
 /* Edukační sekce */
 .education-section {
   text-align: left;
   margin-bottom: 30px;
+  padding: 0 10px;
 }
 
 .education-section h4 {
-  color: #ffbb33; /* Oranžová pro tipy */
-  font-size: 1.3rem;
-  margin-bottom: 15px;
+  color: #f1f5f9;
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .edu-list {
   list-style: none;
   padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dvou sloupcový layout pro široké okno */
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .edu-list { grid-template-columns: 1fr; }
 }
 
 .edu-list li {
   position: relative;
-  padding-left: 25px;
-  margin-bottom: 12px;
-  font-size: 0.95rem;
-  color: #ccc;
-  line-height: 1.5;
+  padding-left: 30px;
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.4;
 }
 
 .edu-list li::before {
-  content: "→";
+  content: "🛡️";
   position: absolute;
   left: 0;
-  color: #ffbb33;
-  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .modal-divider {
   border: none;
-  border-top: 1px solid #333;
-  margin: 20px 0;
+  border-top: 1px solid #334155;
+  margin: 30px 0;
   width: 100%;
 }
 
 /* Výběr věku v modálu */
 .age-selection-section {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .section-title {
-  color: #ffffff;
+  color: #f1f5f9;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 15px;
@@ -356,37 +380,31 @@
 
 .modal-select {
   width: 100%;
-  max-width: 400px;
-  padding: 12px 15px;
-  background-color: #000000; /* Sytě černé pozadí */
-  color: #ffffff; /* Bílé písmo */
-  border: 2px solid #444;
-  border-radius: 8px;
+  max-width: 450px;
+  padding: 14px 20px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid #334155;
+  border-radius: 12px;
   font-size: 1.05rem;
-  font-weight: 500;
   cursor: pointer;
   outline: none;
   transition: all 0.3s;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20128c3.6%203.6%207.8%205.4%2013%205.4s9.3-1.8%2013-5.4l128-128c3.5-3.6%205.4-7.8%205.4-13%200-5-3.5-9.3-5.4-13z%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2310b981%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20128c3.6%203.6%207.8%205.4%2013%205.4s9.3-1.8%2013-5.4l128-128c3.5-3.6%205.4-7.8%205.4-13%200-5-3.5-9.3-5.4-13z%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
   background-position: right 15px top 50%;
   background-size: 12px auto;
 }
 
-.modal-select option {
-  background-color: #000000;
-  color: #ffffff;
-}
-
 .modal-select:focus {
-  border-color: #ff4444;
-  box-shadow: 0 0 10px rgba(255, 68, 68, 0.2);
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
 /* Souhlas */
 .agreement-wrapper {
-  margin: 20px 0 30px 0;
+  margin-bottom: 30px;
 }
 
 .checkbox-container {
@@ -395,14 +413,14 @@
   justify-content: center;
   gap: 12px;
   font-size: 1.1rem;
-  color: #ff4444;
+  color: #cbd5e1;
   cursor: pointer;
 }
 
 .checkbox-container input {
   width: 22px;
   height: 22px;
-  accent-color: #ff4444;
+  accent-color: #10b981;
 }
 
 /* Footer a tlačítko */
@@ -411,36 +429,92 @@
 }
 
 .small-note {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 20px;
 }
 
 .close-btn {
-  background-color: #ff4444;
-  color: white;
+  background-color: #10b981;
+  color: #000; /* Černé písmo na zeleném pro vysoký kontrast */
   border: none;
-  padding: 16px 50px;
-  border-radius: 10px;
+  padding: 18px 60px;
+  border-radius: 14px;
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.1rem;
-  text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+  transition: all 0.3s;
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
 }
 
 .close-btn:hover:not(:disabled) {
-  background-color: #cc0000;
+  background-color: #34d399;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
+  box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.4);
 }
 
 .close-btn:disabled {
-  background-color: #222;
-  color: #555;
+  background-color: #1e293b;
+  color: #475569;
   cursor: not-allowed;
   box-shadow: none;
+}
+
+/* Sekce kontaktů v modálu */
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s;
+}
+
+.contact-card:hover {
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.contact-card h5 {
+  color: #34d399;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-item a {
+  color: #f1f5f9;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-item a:hover {
+  color: #34d399;
+}
+
+@media (max-width: 600px) {
+  .contact-section { grid-template-columns: 1fr; }
 }
 
 /* =========================================

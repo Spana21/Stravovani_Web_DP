@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ShieldCheck, Lightbulb, FileText, Mail, Phone, GraduationCap } from 'lucide-react';
 
 // Tady si definujeme adresu Workeru (stejná jako v LoginScreen)
 const WORKER_URL = "https://stravovani-worker.spaniklukas.workers.dev";
@@ -42,31 +43,25 @@ function DiplomkaModal({ isOpen, onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>Právě jste se stali součástí testování!</h3>
+
+        <h3>Právě jste se stali součástí simulovaného testování v rámci <strong>diplomové práce</strong>.</h3>
         
         <div className="modal-info-section">
           <p className="modal-text">
-            Tato stránka není skutečným přihlašovacím portálem. Jedná se o <strong>simulaci phishingového útoku</strong>, 
-            která je součástí výzkumu pro mou <strong>diplomovou práci</strong>.
-          </p>
-
-          <p className="github-info">
-            Celý projekt je transparentní a jeho zdrojový kód si můžete prohlédnout na 
-            <a href="https://github.com/Spana21/Stravovani_Web_DP" target="_blank" rel="noopener noreferrer" className="github-link"> GitHubu</a>.
+            Tato stránka není skutečným přihlašovacím portálem. Jedná se o <strong>bezpečnou simulaci</strong> v rámci výzkumu pro mou diplomovou práci.
           </p>
           
           <div className="security-guarantee">
-            <h4>🛡️ Vaše data jsou v bezpečí</h4>
+            <h4><ShieldCheck size={28} color="#34d399" /> Vaše údaje jsou v naprostém bezpečí</h4>
             <p>
-              Vaše heslo ani e-mail <strong>nebyly nikde uloženy</strong>. Tato aplikace je navržena tak, aby pouze 
-              zaznamenala anonymní statistiku (že na stránku někdo přišel a klikl na tlačítko). 
-              Jediný údaj, který o sobě můžete dobrovolně poskytnout pro potřeby výzkumu, je vaše věková kategorie níže.
+              Vaše <strong>heslo ani e-mail nebyly nikde uloženy ani odeslány</strong>. 
+              Tato simulace slouží výhradně k anonymnímu sběru statistik pro vědecké účely. 
             </p>
           </div>
         </div>
 
         <div className="education-section">
-          <h4>💡 Jak poznat phishing příště?</h4>
+          <h4><Lightbulb size={24} color="#34d399" style={{ verticalAlign: 'middle', marginRight: '10px' }} /> Jak se příště nenechat napálit?</h4>
           <ul className="edu-list">
             <li><strong>Zkontrolujte adresu (URL):</strong> Skutečné systémy mají jasnou a oficiální adresu. Útočníci často používají podobné nebo podezřelé domény.</li>
             <li><strong>Podezřelý odesílatel:</strong> Vždy si ověřte, z jaké e-mailové adresy vám přišla výzva k přihlášení.</li>
@@ -75,11 +70,37 @@ function DiplomkaModal({ isOpen, onClose }) {
           </ul>
         </div>
 
+        {/* --- KONTAKTY --- */}
+        <div className="contact-section">
+          <div className="contact-card">
+            <h5>HelpDesk OKIS</h5>
+            <div className="contact-item">
+              <Mail size={16} color="#34d399" />
+              <a href="mailto:okis-dispecer@unob.cz">okis-dispecer@unob.cz</a>
+            </div>
+            <div className="contact-item">
+              <Phone size={16} color="#34d399" />
+              <a href="tel:442222">442 222</a>
+            </div>
+          </div>
+          
+          <div className="contact-card">
+            <h5>Autor výzkumu</h5>
+            <div className="contact-item">
+              <Mail size={16} color="#34d399" />
+              <a href="mailto:lukas.spanik@unob.cz">lukas.spanik@unob.cz</a>
+            </div>
+            <div className="contact-item">
+              <GraduationCap size={16} color="#34d399" />
+              <span>rtm. Lukáš Špánik</span>
+            </div>
+          </div>
+        </div>
+
         <hr className="modal-divider" />
 
-        {/* --- VÝBĚR VĚKU --- */}
         <div className="age-selection-section">
-          <p className="section-title">Pomozte mi s výzkumem: Jaký je váš věk?</p>
+          <p className="section-title">Pomozte mi s výzkumem: Do jaké věkové skupiny patříte?</p>
           <select 
             className="modal-select"
             value={selectedAge}
@@ -94,7 +115,6 @@ function DiplomkaModal({ isOpen, onClose }) {
           </select>
         </div>
 
-        {/* --- SOUHLAS --- */}
         <div className="agreement-wrapper">
           <label className="checkbox-container">
             <input 
@@ -106,7 +126,6 @@ function DiplomkaModal({ isOpen, onClose }) {
           </label>
         </div>
 
-        {/* --- TLAČÍTKO --- */}
         <div className="modal-footer">
           <p className="small-note">Kliknutím na tlačítko stáhnete informovaný souhlas a okno se zavře.</p>
           <button 
@@ -114,8 +133,14 @@ function DiplomkaModal({ isOpen, onClose }) {
             className="close-btn"
             disabled={!isAgreed || !selectedAge} 
           >
+            <FileText size={20} style={{ verticalAlign: 'middle', marginRight: '10px' }} />
             Stáhnout dokument a dokončit
           </button>
+          
+          <p className="github-info" style={{ marginTop: '30px' }}>
+            Projekt je plně transparentní a zdrojový kód je dostupný na 
+            <a href="https://github.com/Spana21/Stravovani_Web_DP" target="_blank" rel="noopener noreferrer" className="github-link"> GitHubu</a>.
+          </p>
         </div>
       </div>
     </div>

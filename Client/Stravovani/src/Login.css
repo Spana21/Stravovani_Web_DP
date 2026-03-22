@@ -206,7 +206,7 @@
 }
 
 /* =========================================
-   5. MODÁLNÍ OKNO (SAFE DARK MODE)
+   5. MODÁLNÍ OKNO
    ========================================= */
 .modal-overlay {
   position: fixed;
@@ -226,13 +226,13 @@
   background-color: #0a0a0a;
   color: #ffffff;
   padding: 50px;
-  border: 1px solid #10b981; /* Elegantní zelený okraj */
+  border: 1px solid #10b981; 
   border-radius: 24px;
   text-align: center;
-  box-shadow: 0 0 40px rgba(16, 185, 129, 0.15); /* Jemná zelená záře */
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.15); 
   
   width: 95%;
-  max-width: 1150px; /* Rozšířeno pro vzdušnější pocit */
+  max-width: 1150px; /* width win */
   
   height: auto;
   max-height: 90vh;
@@ -244,7 +244,7 @@
 
 .modal-content h3 {
   font-size: 2.2rem;
-  color: #10b981; /* Bezpečná zelená */
+  color: #10b981; 
   margin-bottom: 25px;
   font-weight: 800;
   letter-spacing: -0.5px;
@@ -280,7 +280,7 @@
   border-bottom-color: #34d399;
 }
 
-/* Sekce se zárukou bezpečnosti - DOMINANTNÍ */
+/* Sekce se zárukou bezpečnosti */
 .security-guarantee {
   background: rgba(16, 185, 129, 0.1);
   padding: 30px;
@@ -336,7 +336,7 @@
   list-style: none;
   padding-left: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dvou sloupcový layout pro široké okno */
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
@@ -436,7 +436,7 @@
 
 .close-btn {
   background-color: #10b981;
-  color: #000; /* Černé písmo na zeleném pro vysoký kontrast */
+  color: #000; /* Černé písmo */
   border: none;
   padding: 18px 60px;
   border-radius: 14px;

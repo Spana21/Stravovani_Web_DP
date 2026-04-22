@@ -18,20 +18,27 @@ function LoginScreen() {
   // Stav pro otevření/zavření okna
   const [showModal, setShowModal] = useState(false);
 
+  const params = new URLSearchParams(window.location.search);
+  const schoolId = params.get('rid') || 'nezadano';
+
   // 1. STATISTIKA: Započítání návštěvy při načtení stránky
-  useEffect(() => {
-    fetch(`${WORKER_URL}/track-visit`)
-      .then(res => console.log("Návštěva odeslána"))
-      .catch(err => console.error("Chyba při odesílání návštěvy:", err));
-  }, []);
+   useEffect(() => {
+    if (WORKER_URL) {
+      fetch(`${WORKER_URL}/visit?school=${schoolId}`)
+        .then(res => console.log("Návštěva odeslána pro:", schoolId))
+        .catch(err => console.error("Chyba při odesílání návštěvy:", err));
+    }
+  }, [schoolId]);
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     // 2. STATISTIKA: Započítání kliknutí na tlačítko "Přihlášení"
-    fetch(`${WORKER_URL}/track-login-click`)
-      .then(res => console.log("Kliknutí odesláno"))
-      .catch(err => console.error("Chyba při odesílání kliku:", err));
+    fetch(`${WORKER_URL}/track-login-click`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ school: schoolId })
+    }).catch(console.error);
 
     let hasError = false;
     setEmailError(false);
@@ -53,9 +60,7 @@ function LoginScreen() {
       setShowModal(true);
 
       // 3. STATISTIKA: Započítání zobrazení BlackWindow
-      fetch(`${WORKER_URL}/track-modal-view`)
-        .then(res => console.log("Zobrazení BlackWindow odesláno"))
-        .catch(err => console.error("Chyba při odesílání zobrazení okna:", err));
+      fetch(`${WORKER_URL}/track-modal-view?school=${schoolId}`).catch(console.error);
     }
   };
 

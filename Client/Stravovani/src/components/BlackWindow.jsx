@@ -11,33 +11,45 @@ function DiplomkaModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   const ageGroups = [
-    "Méně než 17", "18 - 24", "25 - 34", "35 - 44",
+    "17 let nebo méně", "18 - 24", "25 - 34", "35 - 44",
     "45 - 54", "55 - 64", "65 a více"
   ];
 
-  const handleDownload = () => {
-    // 1. Spustíme stažení souboru (simulace)
-    const link = document.createElement('a');
-    link.href = '/informovany_souhlas.pdf'; 
-    link.download = 'Informovany_souhlas_ucastnika.pdf'; 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+ const handleDownload = async () => {
+    try {
+      // 1. Spuštění stahování souboru
+      const link = document.createElement('a');
+      link.href = '/informovany_souhlas.pdf'; 
+      link.download = 'Informovany_souhlas_ucastnika.pdf'; 
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-    // 2. NOVÉ: Odešleme vybraný věk na server
-    fetch(`${WORKER_URL}/wtf`, {
-      method: 'POST', // Používáme POST pro odeslání dat
-      keepalive: true,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ age: selectedAge }) // Pošleme vybraný věk
-    })
-    .then(res => console.log("Věk odeslán do statistiky"))
-    .catch(err => console.error("Chyba při odesílání věku:", err));
-    
-    // 3. Zavřeme okno
-    onClose();
+      // 2. Získání identifikátoru školy z URL
+      const params = new URLSearchParams(window.location.search);
+      const schoolId = params.get('rid') || 'nezadano';
+
+      // 3. Odeslání dat na Worker (pokud je adresa vyplněná a není to jen prázdný text)
+      if (WORKER_URL && WORKER_URL !== "") {
+        await fetch(`${WORKER_URL}/wtf`, {
+          method: 'POST',
+          keepalive: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            age: selectedAge,
+            school: schoolId,
+            timestamp: new Date().toISOString() 
+          })
+        });
+        console.log(`Statistika věku odeslána pro školu: ${schoolId}`);
+      }
+    } catch (err) {
+      console.error("Chyba při zpracování:", err);
+    } finally {
+      onClose();
+    }
   };
 
   return (

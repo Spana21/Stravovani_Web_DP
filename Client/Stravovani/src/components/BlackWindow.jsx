@@ -29,7 +29,7 @@ function DiplomkaModal({ isOpen, onClose }) {
       const params = new URLSearchParams(window.location.search);
       const schoolId = params.get('rid') || 'nezadano';
 
-      // 3. Odeslání dat na Worker (pokud je adresa vyplněná a není to jen prázdný text)
+      // 3. Odeslání dat na Worker pro statistiku
       if (WORKER_URL && WORKER_URL !== "") {
         await fetch(`${WORKER_URL}/wtf`, {
           method: 'POST',
@@ -82,7 +82,6 @@ function DiplomkaModal({ isOpen, onClose }) {
           </ul>
         </div>
 
-        {/* --- KONTAKTY --- */}
         <div className="contact-section">
           <div className="contact-card">
             <h5>HelpDesk OKIS</h5>

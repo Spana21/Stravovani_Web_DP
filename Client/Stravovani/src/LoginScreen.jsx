@@ -15,7 +15,6 @@ function LoginScreen() {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   
-  // Stav pro otevření/zavření okna
   const [showModal, setShowModal] = useState(false);
 
   const params = new URLSearchParams(window.location.search);
@@ -44,7 +43,6 @@ function LoginScreen() {
     setEmailError(false);
     setPasswordError(false);
 
-    // Validace
     if (!email.trim()) {
       setEmailError(true);
       hasError = true;
@@ -67,7 +65,6 @@ function LoginScreen() {
   return (
     <div className="login-container">
       
-      {/* Modální okno */}
       <DiplomkaModal 
         isOpen={showModal} 
         onClose={() => setShowModal(false)} 

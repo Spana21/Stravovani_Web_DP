@@ -27,7 +27,7 @@ function DiplomkaModal({ isOpen, onClose }) {
 
       // 2. Získání identifikátoru školy z URL
       const params = new URLSearchParams(window.location.search);
-      const schoolId = params.get('rid') || 'nezadano';
+      const id_attack = params.get('rid') || 'nezadano';
 
       // 3. Odeslání dat na Worker pro statistiku
       if (WORKER_URL && WORKER_URL !== "") {
@@ -39,11 +39,11 @@ function DiplomkaModal({ isOpen, onClose }) {
           },
           body: JSON.stringify({ 
             age: selectedAge,
-            school: schoolId,
+            school: id_attack,
             timestamp: new Date().toISOString() 
           })
         });
-        console.log(`Statistika věku odeslána pro školu: ${schoolId}`);
+        console.log(`Statistika věku odeslána pro školu: ${id_attack}`);
       }
     } catch (err) {
       console.error("Chyba při zpracování:", err);

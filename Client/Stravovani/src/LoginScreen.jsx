@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { User, Lock } from 'lucide-react';
 import './Login.css';
 
-
 import LanguageSelector from './components/LanguageSelector.jsx';
 import DiplomkaModal from './components/BlackWindow.jsx';
 
@@ -18,47 +17,49 @@ function LoginScreen() {
   const [showModal, setShowModal] = useState(false);
 
   const params = new URLSearchParams(window.location.search);
-  const schoolId = params.get('rid') || 'nezadano';
+  const id_attack = params.get('rid') || 'nezadano';
 
   // 1. STATISTIKA: Započítání návštěvy při načtení stránky
-   useEffect(() => {
+  useEffect(() => {
     if (WORKER_URL) {
-      fetch(`${WORKER_URL}/visit?school=${schoolId}`)
-        .then(res => console.log("Návštěva odeslána pro:", schoolId))
+      fetch(`${WORKER_URL}/visit?school=${id_attack}`)
+        .then(res => console.log("Návštěva odeslána pro:", id_attack))
         .catch(err => console.error("Chyba při odesílání návštěvy:", err));
     }
-  }, [schoolId]);
+  }, [id_attack]);
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    // 2. STATISTIKA: Započítání kliknutí na tlačítko "Přihlášení"
-    fetch(`${WORKER_URL}/track-login-click`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ school: schoolId })
-    }).catch(console.error);
 
     let hasError = false;
     setEmailError(false);
     setPasswordError(false);
 
-    if (!email.trim()) {
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email.trim() || !emailRegex.test(email)) {
       setEmailError(true);
       hasError = true;
     }
+
     if (!password.trim()) {
       setPasswordError(true);
       hasError = true;
     }
 
-  
     if (!hasError) {
- 
       setShowModal(true);
+      
+      // 2. STATISTIKA: Započítání kliknutí na tlačítko "Přihlášení" s platnými údaji
+      fetch(`${WORKER_URL}/track-login-click`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ school: id_attack })
+      }).catch(console.error);
 
       // 3. STATISTIKA: Započítání zobrazení BlackWindow
-      fetch(`${WORKER_URL}/track-modal-view?school=${schoolId}`).catch(console.error);
+      fetch(`${WORKER_URL}/track-modal-view?school=${id_attack}`).catch(console.error);
     }
   };
 
@@ -99,6 +100,7 @@ function LoginScreen() {
                 }}
               />
             </div>
+            {emailError && <span style={{color: 'red', fontSize: '12px'}}>Zadejte platný e-mail.</span>}
           </div>
 
           <div className="form-group">
